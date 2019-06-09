@@ -1,0 +1,5 @@
+uu	30	20	Sentinela
+iu	37	iu	Brochura
+Teeste	59	er	Sentinela
+Teeste	71	er	Despertai
+ar	9557	7pp	Folheto

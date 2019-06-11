@@ -138,9 +138,9 @@ public class Inventory extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Search a= new Search();
+        Registrar a= new Registrar();
         a.setVisible(true);
-        a.setDefaultCloseOperation(Search.DISPOSE_ON_CLOSE);           
+        a.setDefaultCloseOperation(Registrar.DISPOSE_ON_CLOSE);           
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

@@ -77,7 +77,7 @@ public class Teste extends javax.swing.JFrame {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection(connectionUrl);
             String test = jTextField1.getText();
-            String query = "INSERT INTO teste(tst)VALUES(?)";
+            String query = "INSERT INTO teste2(teste34)VALUES(?)";
             PreparedStatement prp = con.prepareStatement(query);
             //Connection conect = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ReadIT","arison","123");
             prp.setString(1, jTextField1.getText());

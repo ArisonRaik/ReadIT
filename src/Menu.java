@@ -99,9 +99,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         
-            Display_Purchase a= new Display_Purchase();
+            Biblioteca a= new Biblioteca();
             a.setVisible(true);
-            a.setDefaultCloseOperation(Display_Purchase.DISPOSE_ON_CLOSE);
+            a.setDefaultCloseOperation(Biblioteca.DISPOSE_ON_CLOSE);
 
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 

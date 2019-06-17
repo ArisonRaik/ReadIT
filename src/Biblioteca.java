@@ -5,6 +5,12 @@
  */
 import java.io.*;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 /**
@@ -921,69 +927,51 @@ public class Biblioteca extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // Add Button
-
+        String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
+            "databaseName=ReadIT;user=arison;password=123;";
+        
         try {
             if (jTextField3.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Insira o nome da publicação.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Insira o título.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
             }
-            if (jTextField4.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Insira o código da publicação.\nO codigo pode ser encontrado na segunda ou terceira página da publicação ou ao lado do QrCode.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
-            }
+            ///////Fazer if se o ano não for int
             else {
-                InputStream inputStream = Display_Purchase.class.getResourceAsStream("items.txt");
-                InputStreamReader inputReader = new InputStreamReader(inputStream);
-                BufferedReader rdfile = new BufferedReader(inputReader);
-
-                String[] itemline = new String[100];
-                String prod = "";
-                int qty = 0;
-                String Codigo = "";
-                String Tipo = "";
-                boolean found = false;
-
-                int x = 0;
-                while ((itemline[x] = rdfile.readLine()) != null) {
-                    x++;
-                }
-                rdfile.close();
-
-                if (!(x >= 100)) {
-                    prod = jTextField3.getText();
-
-                    for (int j = 0; itemline[j] != null; j++) {      //check whether item is in the list already
-                        String[] temp = itemline[j].split("\t");
-
-                        if (prod.equals(temp[0])) {
-                            found = true;
-                        }
-                    }
-
-                    if (found) {
-                        JOptionPane.showMessageDialog(null, "A publicação já está no sistema.\nSugestão: Atualizar publicação.", "", JOptionPane.WARNING_MESSAGE);
-                    } else {
-                        qty = Integer.parseInt(jTextField4.getText());
-                        Codigo = jTextField5.getText();
-                        Tipo = jComboBox1.getSelectedItem().toString();
-
-                        if (Tipo=="--") {
-                            JOptionPane.showMessageDialog(null, "Insira o tipo da publicação.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
-                        }else{
-                            itemline[x] = prod + "\t" + qty + "\t" + Codigo + "\t" + Tipo;
-
-                            PrintWriter wrfile = new PrintWriter(new FileWriter("items.txt"));
-
-                            for (int j = 0; itemline[j] != null; j++) {
-                                wrfile.println(itemline[j]);
-                            }
-
-                            wrfile.close();
-
-                            JOptionPane.showMessageDialog(null, "Adicionado com sucesso!", " Ok!  :-)", JOptionPane.INFORMATION_MESSAGE);
-                        }
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Estoque cheio!", "Perigo!", JOptionPane.WARNING_MESSAGE);
-                }
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection con = DriverManager.getConnection(connectionUrl);
+            
+            
+            Statement stmt = con.createStatement();
+              ResultSet result = stmt.executeQuery("" +
+                  "SELECT COUNT(*) FROM texto");
+                    result.next();                
+              int rows = result.getInt(1);
+            
+            /*Statement s = cd.createStatement();
+            ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM texto");
+            r.next();
+            int count = r.getInt("rowcount");
+            r.close();*/
+            
+            String salvaTitulo = jTextField3.getText();
+            String salvaAutor = jTextField4.getText();
+            int salvaAno = Integer.parseInt(jTextField5.getText());
+            FileInputStream imagem = new FileInputStream(new File(jTextField10.getText()));
+            String salvaGenero = jComboBox1.getSelectedItem().toString();
+            
+            
+            String query = "INSERT INTO texto(ID,Titulo,Autor,Ano,Genero,Capa)VALUES(?,?,?,?,?,?)";
+            PreparedStatement prp = con.prepareStatement(query);
+            //Connection conect = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ReadIT","arison","123");
+            prp.setInt(1, rows + 1);
+            prp.setString(2, salvaTitulo);
+            prp.setString(3, salvaAutor);
+            prp.setInt(4, salvaAno);
+            prp.setString(5, salvaGenero);
+            prp.setBinaryStream(6, imagem);
+            prp.executeUpdate();
+            //int row = preparedStatement.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,"feito!");
             }
 
             jTextField3.setText("");
@@ -991,14 +979,10 @@ public class Biblioteca extends javax.swing.JFrame {
             jTextField5.setText("");
             jComboBox1.setSelectedItem("--");
 
-        } catch (IOException e) {
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Você tentou inserir um valor invalido. Por favor,revise seus campos.", "Warning!", JOptionPane.WARNING_MESSAGE);
-
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jComboBox1.setSelectedItem("--");
+        } catch(ClassNotFoundException | SQLException e){
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {  
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -1025,7 +1009,7 @@ public class Biblioteca extends javax.swing.JFrame {
       fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
       FileNameExtensionFilter Filtro = new FileNameExtensionFilter("Imagem", "jpg", "jpeg", "png");
       fileChooser.setFileFilter(Filtro);
-      int retorno = fileChooser.showOpenDialog(this);
+      int retorno = fileChooser.showSaveDialog(this);
       
       if(retorno == JFileChooser.APPROVE_OPTION){
           File file = fileChooser.getSelectedFile();

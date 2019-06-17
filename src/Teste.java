@@ -33,6 +33,8 @@ public class Teste extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        Procurar1 = new javax.swing.JButton();
+        jTextField10 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,28 +45,52 @@ public class Teste extends javax.swing.JFrame {
             }
         });
 
+        Procurar1.setText("Procurar");
+        Procurar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Procurar1ActionPerformed(evt);
+            }
+        });
+
+        jTextField10.setEditable(false);
+        jTextField10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
+        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField10ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
+                .addContainerGap(109, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(161, 161, 161))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109))))
+                        .addGap(109, 109, 109))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(154, 154, 154))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Procurar1)
+                        .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
+                .addContainerGap(102, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(59, 59, 59)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Procurar1)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55))
         );
 
         pack();
@@ -77,10 +103,13 @@ public class Teste extends javax.swing.JFrame {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection(connectionUrl);
             String test = jTextField1.getText();
-            String query = "INSERT INTO teste2(teste34)VALUES(?)";
+            //File imgfile = Procurar1.get();
+            FileInputStream imagem = new FileInputStream(new File(jTextField10.getText()));
+            String query = "INSERT INTO teste2(teste34,imagem)VALUES(?,?)";
             PreparedStatement prp = con.prepareStatement(query);
             //Connection conect = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ReadIT","arison","123");
             prp.setString(1, jTextField1.getText());
+            prp.setBinaryStream(2, imagem);
             prp.executeUpdate();
             //int row = preparedStatement.executeUpdate();
             
@@ -88,8 +117,30 @@ public class Teste extends javax.swing.JFrame {
         }
         catch(ClassNotFoundException | SQLException e){
             e.printStackTrace();
-        }
+        } catch (FileNotFoundException e) {  
+            e.printStackTrace();
+}
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Procurar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Procurar1ActionPerformed
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Escolher imagem");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        FileNameExtensionFilter Filtro = new FileNameExtensionFilter("Imagem", "jpg", "jpeg", "png");
+        fileChooser.setFileFilter(Filtro);
+        int retorno = fileChooser.showSaveDialog(this);//mudado de showOpenDialog
+
+        if(retorno == JFileChooser.APPROVE_OPTION){
+            File file = fileChooser.getSelectedFile();
+            jTextField10.setText(file.getPath());
+        }
+
+    }//GEN-LAST:event_Procurar1ActionPerformed
+
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,7 +178,9 @@ public class Teste extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Procurar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
     // End of variables declaration//GEN-END:variables
 }

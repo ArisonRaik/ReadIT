@@ -43,19 +43,22 @@ public class Biblioteca extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        InserirLivro = new javax.swing.JButton();
+        Limpar = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         Procurar1 = new javax.swing.JButton();
         jTextField10 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField12 = new javax.swing.JTextField();
+        Procurar3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
-        jButton18 = new javax.swing.JButton();
+        DeletarLivro = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
@@ -67,11 +70,14 @@ public class Biblioteca extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
+        AlterarLivro = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton19 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jComboBox5 = new javax.swing.JComboBox<>();
+        jButton20 = new javax.swing.JButton();
+        jTextField11 = new javax.swing.JTextField();
+        Procurar2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -121,25 +127,25 @@ public class Biblioteca extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(51, 153, 255));
-        jButton5.setFont(new java.awt.Font("Vani", 1, 14)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(51, 51, 255));
-        jButton5.setText("Salvar");
-        jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        InserirLivro.setBackground(new java.awt.Color(51, 153, 255));
+        InserirLivro.setFont(new java.awt.Font("Vani", 1, 14)); // NOI18N
+        InserirLivro.setForeground(new java.awt.Color(51, 51, 255));
+        InserirLivro.setText("Salvar");
+        InserirLivro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
+        InserirLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                InserirLivroActionPerformed(evt);
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(51, 153, 255));
-        jButton7.setFont(new java.awt.Font("Vani", 1, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(255, 0, 0));
-        jButton7.setText("Limpar");
-        jButton7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        Limpar.setBackground(new java.awt.Color(51, 153, 255));
+        Limpar.setFont(new java.awt.Font("Vani", 1, 14)); // NOI18N
+        Limpar.setForeground(new java.awt.Color(255, 0, 0));
+        Limpar.setText("Limpar");
+        Limpar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
+        Limpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                LimparActionPerformed(evt);
             }
         });
 
@@ -173,6 +179,26 @@ public class Biblioteca extends javax.swing.JFrame {
         jLabel10.setText("Capa");
         jLabel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
 
+        jLabel11.setBackground(new java.awt.Color(51, 153, 255));
+        jLabel11.setFont(new java.awt.Font("Vani", 1, 14)); // NOI18N
+        jLabel11.setText("Texto");
+        jLabel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
+
+        jTextField12.setEditable(false);
+        jTextField12.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
+        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField12ActionPerformed(evt);
+            }
+        });
+
+        Procurar3.setText("Procurar");
+        Procurar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Procurar3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -180,6 +206,7 @@ public class Biblioteca extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(72, 72, 72)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,16 +232,22 @@ public class Biblioteca extends javax.swing.JFrame {
                                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                                     .addGap(18, 18, 18)
-                                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(InserirLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGap(65, 65, 65)
-                                                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(Limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGap(0, 0, Short.MAX_VALUE))))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(Procurar1))))))
-                .addGap(47, 47, 47))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(Procurar3))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(Procurar1))))))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,10 +275,16 @@ public class Biblioteca extends javax.swing.JFrame {
                     .addComponent(Procurar1)
                     .addComponent(jLabel10)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Procurar3)))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton7))
+                    .addComponent(InserirLivro)
+                    .addComponent(Limpar))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
 
@@ -392,13 +431,13 @@ public class Biblioteca extends javax.swing.JFrame {
 
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
 
-        jButton18.setBackground(new java.awt.Color(204, 204, 204));
-        jButton18.setFont(new java.awt.Font("Vani", 1, 24)); // NOI18N
-        jButton18.setText("Enviar");
-        jButton18.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        DeletarLivro.setBackground(new java.awt.Color(204, 204, 204));
+        DeletarLivro.setFont(new java.awt.Font("Vani", 1, 24)); // NOI18N
+        DeletarLivro.setText("Enviar");
+        DeletarLivro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
+        DeletarLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                DeletarLivroActionPerformed(evt);
             }
         });
 
@@ -422,7 +461,7 @@ public class Biblioteca extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGap(178, 178, 178)
-                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DeletarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -449,7 +488,7 @@ public class Biblioteca extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
-                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(DeletarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -474,32 +513,34 @@ public class Biblioteca extends javax.swing.JFrame {
 
         jButton11.setText("Novo Ano");
 
+        jTextField7.setEditable(false);
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
             }
         });
 
+        jTextField8.setEditable(false);
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
             }
         });
 
+        jTextField9.setEditable(false);
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
             }
         });
 
-        jButton8.setText("Salvar");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        AlterarLivro.setText("Salvar");
+        AlterarLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                AlterarLivroActionPerformed(evt);
             }
         });
 
-        jComboBox2.setEditable(true);
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Drama", "Biografia", "Comédia", "Romance", "Clássico", "Épico ou Fantasia", "Auto-ajuda", "Terror", "Ficção-Científica", "Educacional", "Outros" }));
 
         jButton19.setText("Novo Gênero");
@@ -510,17 +551,38 @@ public class Biblioteca extends javax.swing.JFrame {
         jComboBox5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Titulo" }));
 
+        jButton20.setText("Nova Capa");
+
+        jTextField11.setEditable(false);
+        jTextField11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
+        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField11ActionPerformed(evt);
+            }
+        });
+
+        Procurar2.setText("Procurar");
+        Procurar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Procurar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(150, 150, 150)
+                .addComponent(AlterarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jButton20)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField11))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -544,7 +606,9 @@ public class Biblioteca extends javax.swing.JFrame {
                         .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField6)))
-                .addGap(142, 142, 142))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Procurar2)
+                .addGap(63, 63, 63))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -570,9 +634,14 @@ public class Biblioteca extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton19))
-                .addGap(31, 31, 31)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton20)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Procurar2))
+                .addGap(24, 24, 24)
+                .addComponent(AlterarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Atualizar", jPanel5);
@@ -711,221 +780,146 @@ public class Biblioteca extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // Save Changes(Update)
+    private void AlterarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarLivroActionPerformed
+        String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
+            "databaseName=ReadIT;user=arison;password=123;";
+        try {
+            if (jTextField1.getText().equals(""))
+                JOptionPane.showMessageDialog(null, "Digite um valor.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
+            else {
+              
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                Connection con = DriverManager.getConnection(connectionUrl);
+                Statement stmt = con.createStatement();
+                String tipo = jComboBox3.getSelectedItem().toString();
+                
+                ResultSet result = stmt.executeQuery("" +
+                  "SELECT COUNT(*) FROM texto");
+                    result.next();                
+                int rows = result.getInt(1);
+                
+                String salvaTitulo = jTextField7.getText();
+                String salvaAutor = jTextField8.getText();
+                int salvaAno = Integer.parseInt(jTextField9.getText());
+                FileInputStream imagem = new FileInputStream(new File(jTextField11.getText()));
+                String salvaGenero = jComboBox2.getSelectedItem().toString();
+                
+                Statement procuraDuplicado = con.createStatement();
+                ResultSet resultado = procuraDuplicado.executeQuery("" +
+                  "SELECT * FROM texto WHERE Titulo = " + salvaTitulo + "");
+                resultado.next();
+                
+                
+              int row = result.getInt(1);
+                if(row == 0){
+                    if(tipo == "ID"){
 
-        try{
-            if( jTextField6.getText().equals(""))
-            JOptionPane.showMessageDialog(null, "Digite o nome da publicação.", "Ooops Wait...!", JOptionPane.ERROR_MESSAGE);
-
-            else{
-                InputStream inputStream = Display_Purchase.class.getResourceAsStream("items.txt");
-                InputStreamReader inputReader = new InputStreamReader(inputStream);
-                BufferedReader rdfile= new BufferedReader(inputReader);
-
-                String[] itemline= new String[100];
-                String temp[];
-                String search= "", prod="", Qty="", Codigo="", Tipo="";
-                search= jTextField6.getText();
-                int qty=0, x=0;
-                boolean found= false;
-
-                prod= jTextField7.getText();
-                Qty= jTextField8.getText();
-                Codigo= jTextField9.getText();
-                Tipo = jComboBox2.getSelectedItem().toString();
-                if( (!(prod.equals(""))) || (!(Qty.equals(""))) || (!(Codigo.equals(""))) ){
-                    while(( itemline[x]= rdfile.readLine()) != null){
-                        temp= itemline[x].split("\t");
-
-                        if( search.equals( temp[0])){
-                            Tipo = temp[3];
-                            if( prod.equals(""))
-                            prod= temp[0];
-                            if( Qty.equals(""))
-                            qty= Integer.parseInt(temp[1]);
-                            else
-                            qty= Integer.parseInt( Qty );
-
-                            if( Codigo.equals(""))
-                            Codigo= temp[2];
-                            else
-                            Codigo=Codigo;
-
-                            itemline[x]= prod+"\t"+qty+"\t"+Codigo+"\t"+Tipo;
-                            found= true;
-                        }
-                        x++;
-
+                        int id = Integer.parseInt(jTextField6.getText());
+                        String query = "DELETE FROM texto WHERE ID =" +id + "";
+                        //Atualizar os textfields da pagina com as informações do livro
+                        //criar um botão "Procurar" ao lado do ID/Titulo
+                        
+                    }else{
+                        String titulo = jTextField6.getText();
+                        String query = "DELETE FROM texto WHERE Titulo =" +titulo + "";
+                        
                     }
-                    rdfile.close();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Já existe um material no seu estoque usando esse título.", "Warning!", JOptionPane.WARNING_MESSAGE);
+                     }
+            
+                jTextField1.setText("");
 
-                    if( found ){
-                        PrintWriter wrfile= new PrintWriter( new FileWriter("items.txt"));
-
-                        for( int j=0; itemline[j] != null; j++)
-                        wrfile.println( itemline[j]);
-
-                        wrfile.close();
-
-                        JOptionPane.showMessageDialog(null, "Mudanças salvas.");
-                    } else
-                    JOptionPane.showMessageDialog(null, "Publicação não encontrada!");
-
-                    jTextField6.setText("");
-                    jTextField7.setText("");
-                    jTextField8.setText("");
-                    jTextField9.setText("");
-
-                } else
-                JOptionPane.showMessageDialog( null, "Nenhuma mudança feita!");
             }
-
-        }catch(IOException e){} catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Algumas entradas digitadas estão incompatíveis. Reveja seus campos.");
-
-            jTextField6.setText("");
-            jTextField7.setText("");
-            jTextField8.setText("");
-            jTextField9.setText("");
+        }  catch(ClassNotFoundException | SQLException e){
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {  
+            e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_AlterarLivroActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
-        jButton8ActionPerformed(evt);
+        
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
-        jButton8ActionPerformed(evt);
+        
     }//GEN-LAST:event_jTextField8ActionPerformed
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        jButton8ActionPerformed(evt);
+        
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        //Purchase Button
+    private void DeletarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletarLivroActionPerformed
 
+        String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
+            "databaseName=ReadIT;user=arison;password=123;";
         try {
-            InputStream inputStream = Display_Purchase.class.getResourceAsStream("items.txt");
-            InputStreamReader inputReader = new InputStreamReader(inputStream);
-            BufferedReader rdfile = new BufferedReader(inputReader);
-            String[] itemline = new String[100];
-            String str;
-            int qty = 0, qty_prv = 0, qty_new = 0;
-            boolean found = false, edited = false;
-            String cb = jComboBox3.getSelectedItem().toString();
-            //////////////////////////////////////////     /////////////////////////////////////////////////////////////////////////////////
-            if(cb == "Código"){
-                String idx = jTextField1.getText();
-
-                for (int x = 0; (str = rdfile.readLine()) != null; x++) {
-                    itemline[x] = str;
-                }
-                rdfile.close();
-
-                int r = Row.getRow();
-                String[] temp;
-                for (int i = 0; itemline[i] != null; i++) {
-                    temp = itemline[i].split("\t");
-                    if (idx.equals(temp[2])) {
-                        found = true;
-
-                        //qty = Integer.parseInt(jTextField2.getText());
-                        qty_prv = Integer.parseInt(temp[1]);
-                        if ((qty > qty_prv) && (qty_prv != 0)) {
-                            JOptionPane.showMessageDialog(null, "ERRO! Você tentou retirar um número maior do que o total de publicações.", "Oops!", JOptionPane.WARNING_MESSAGE);
-                        }
-                        if (qty_prv == 0) {
-                            JOptionPane.showMessageDialog(null, "Sem estoque", "Oops!", JOptionPane.WARNING_MESSAGE);
-                        }
-                        if ((qty <= qty_prv) && (qty_prv != 0)) {
-                            qty_new = qty_prv - qty;
-                            itemline[i] = temp[0] + "\t" + qty_new + "\t" + temp[2] + "\t" + temp[3];
-                            jTable2.setValueAt((i+1001), r, 0);
-                            jTable2.setValueAt(temp[0], r, 1);
-                            jTable2.setValueAt(qty*-1, r, 2);
-                            jTable2.setValueAt(temp[2], r, 3);
-                            jTable2.setValueAt(temp[3], r, 4);
-                            r++;
-                            edited = true;
-                        }
-                    }
-
-                }
-            }else{
-
-                int idx = (Integer.parseInt(jTextField1.getText())) - 1001;
-                for (int x = 0; (str = rdfile.readLine()) != null; x++) {
-                    itemline[x] = str;
-                }
-                rdfile.close();
-
-                int r = Row.getRow();
-                for (int i = 0; itemline[i] != null; i++) {
-                    if (idx == i) {
-                        found = true;
-                        String[] temp = itemline[i].split("\t");
-                        //qty = Integer.parseInt(jTextField2.getText());
-                        qty_prv = Integer.parseInt(temp[1]);
-                        if ((qty > qty_prv) && (qty_prv != 0)) {
-                            JOptionPane.showMessageDialog(null, "ERRO! Você tentou retirar um número maior do que o total de publicações.", "Oops!", JOptionPane.WARNING_MESSAGE);
-                        }
-                        if (qty_prv == 0) {
-                            JOptionPane.showMessageDialog(null, "Sem estoque", "Oops!", JOptionPane.WARNING_MESSAGE);
-                        }
-                        if ((qty <= qty_prv) && (qty_prv != 0)) {
-                            qty_new = qty_prv - qty;
-                            itemline[i] = temp[0] + "\t" + qty_new + "\t" + temp[2] + "\t" + temp[3];
-                            jTable2.setValueAt((i+1001), r, 0);
-                            jTable2.setValueAt(temp[0], r, 1);
-                            jTable2.setValueAt(qty*-1, r, 2);
-                            jTable2.setValueAt(temp[2], r, 3);
-                            jTable2.setValueAt(temp[3], r, 4);
-                            r++;
-                            edited = true;
-                        }
-                    }
-
-                }
-
-            }
-
-            if (!found) {
-                JOptionPane.showMessageDialog(null, jTextField1.getText() + ": Publicação não encontrada.", "Oops!", JOptionPane.ERROR_MESSAGE);
-            }
-            if (edited) {
-                PrintWriter wrfile = new PrintWriter(new FileWriter("items.txt"));
-                for (int i = 0; itemline[i] != null; i++) {
-                    wrfile.println(itemline[i]);
-                }
+            if (jTextField1.getText().equals(""))
+                JOptionPane.showMessageDialog(null, "Digite um valor.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
+            else {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                Connection con = DriverManager.getConnection(connectionUrl);
+                Statement stmt = con.createStatement();
+                String tipo = jComboBox3.getSelectedItem().toString();
                 
-                wrfile.close();
-                Row.setRow();
+
+                if(tipo == "ID"){
+                    int id = Integer.parseInt(jTextField1.getText());
+                    String query = "DELETE FROM texto WHERE ID =" +id + "";
+                    PreparedStatement prp = con.prepareStatement(query);
+                    prp.executeUpdate();
+                    JOptionPane.showMessageDialog(null,"Apagado!");
+                    
+                    String command = "UPDATE texto SET ID = ID - 1 WHERE ID > " + id + "";
+                    PreparedStatement prps = con.prepareStatement(command);
+                    prps.executeUpdate();
+                }else{
+                    String titulo = jTextField1.getText();
+                    
+                    String command = "SELECT * FROM texto WHERE Titulo = '" + titulo + "'";
+                    ResultSet rs = stmt.executeQuery(command);
+                    int id = 0;
+                     if (rs.next())
+                        id = rs.getInt("ID");
+                    String command2 = "UPDATE texto SET ID = ID - 1 WHERE ID > " + id + "";
+                    PreparedStatement prps = con.prepareStatement(command2);
+                    prps.executeUpdate();
+                    
+                    
+                    String query = "DELETE FROM texto WHERE Titulo = '" + titulo + "'";
+                    PreparedStatement prp = con.prepareStatement(query);
+                    prp.executeUpdate();
+                    JOptionPane.showMessageDialog(null,"Apagado!");
+                    
+                    
+                }
+            
+                jTextField1.setText("");
+
             }
-            jTextField1.setText("");
+        }  catch(ClassNotFoundException | SQLException e){
+            e.printStackTrace();
+        } 
+        
+        /*UPDATE teste3
+   SET ID = ID-1
+WHERE ID>8/* update dos ids*/
+    }//GEN-LAST:event_DeletarLivroActionPerformed
 
-        } catch (IOException e) {
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Você tentou inserir um valor invalido, por favor reveja seus campos.", "Oops!", JOptionPane.ERROR_MESSAGE);
-
-            jTextField1.setText("");
-        }
-    }//GEN-LAST:event_jButton18ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparActionPerformed
         //Clear Button(Add/Delete)
 
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_LimparActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void InserirLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InserirLivroActionPerformed
         // Add Button
         String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
             "databaseName=ReadIT;user=arison;password=123;";
@@ -946,32 +940,36 @@ public class Biblioteca extends javax.swing.JFrame {
                     result.next();                
               int rows = result.getInt(1);
             
-            /*Statement s = cd.createStatement();
-            ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM texto");
-            r.next();
-            int count = r.getInt("rowcount");
-            r.close();*/
-            
             String salvaTitulo = jTextField3.getText();
             String salvaAutor = jTextField4.getText();
             int salvaAno = Integer.parseInt(jTextField5.getText());
             FileInputStream imagem = new FileInputStream(new File(jTextField10.getText()));
+            FileInputStream artigo = new FileInputStream(new File(jTextField12.getText()));
             String salvaGenero = jComboBox1.getSelectedItem().toString();
             
-            
-            String query = "INSERT INTO texto(ID,Titulo,Autor,Ano,Genero,Capa)VALUES(?,?,?,?,?,?)";
-            PreparedStatement prp = con.prepareStatement(query);
-            //Connection conect = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ReadIT","arison","123");
-            prp.setInt(1, rows + 1);
-            prp.setString(2, salvaTitulo);
-            prp.setString(3, salvaAutor);
-            prp.setInt(4, salvaAno);
-            prp.setString(5, salvaGenero);
-            prp.setBinaryStream(6, imagem);
-            prp.executeUpdate();
-            //int row = preparedStatement.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"feito!");
+            /*Statement procuraDuplicado = con.createStatement();
+              ResultSet resultado = procuraDuplicado.executeQuery("" +
+                  "SELECT * FROM texto WHERE Titulo = " + salvaTitulo + "");
+              resultado.next();            
+              int row = result.getInt(1);*/
+            //if(row == 0){
+                String query = "INSERT INTO texto(ID,Titulo,Autor,Ano,Genero,Capa, Artigo)VALUES(?,?,?,?,?,?, ?)";
+                PreparedStatement prp = con.prepareStatement(query);
+                //Connection conect = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ReadIT","arison","123");
+                prp.setInt(1, rows + 1);
+                prp.setString(2, salvaTitulo);
+                prp.setString(3, salvaAutor);
+                prp.setInt(4, salvaAno);
+                prp.setString(5, salvaGenero);
+                prp.setBinaryStream(6, imagem);
+                prp.setBinaryStream(7, artigo);
+                prp.executeUpdate();
+                //int row = preparedStatement.executeUpdate();
+
+                JOptionPane.showMessageDialog(null,"feito!");
+            /*}else{
+                JOptionPane.showMessageDialog(null, "Já existe um material no seu estoque usando esse título.", "Warning!", JOptionPane.WARNING_MESSAGE);
+            }*/
             }
 
             jTextField3.setText("");
@@ -984,7 +982,11 @@ public class Biblioteca extends javax.swing.JFrame {
         } catch (FileNotFoundException e) {  
             e.printStackTrace();
         }
-    }//GEN-LAST:event_jButton5ActionPerformed
+        ////IF se não for numero. testar depois.
+        /*catch(NumberFormatException e) {
+   System.out.println("Formato invalido. Reveja seus campos."); 
+    } */
+    }//GEN-LAST:event_InserirLivroActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
@@ -1017,6 +1019,32 @@ public class Biblioteca extends javax.swing.JFrame {
       }
       
     }//GEN-LAST:event_Procurar1ActionPerformed
+
+    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField11ActionPerformed
+
+    private void Procurar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Procurar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Procurar2ActionPerformed
+
+    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField12ActionPerformed
+
+    private void Procurar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Procurar3ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+      fileChooser.setDialogTitle("Escolher imagem");
+      fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+      FileNameExtensionFilter Filtro = new FileNameExtensionFilter("Documento", "pdf", "doc", "docx", "txt");
+      fileChooser.setFileFilter(Filtro);
+      int retorno = fileChooser.showSaveDialog(this);
+      
+      if(retorno == JFileChooser.APPROVE_OPTION){
+          File file = fileChooser.getSelectedFile();
+          jTextField12.setText(file.getPath());
+      }
+    }//GEN-LAST:event_Procurar3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1054,14 +1082,17 @@ public class Biblioteca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AlterarLivro;
+    private javax.swing.JButton DeletarLivro;
+    private javax.swing.JButton InserirLivro;
+    private javax.swing.JButton Limpar;
     private javax.swing.JButton Procurar1;
+    private javax.swing.JButton Procurar2;
+    private javax.swing.JButton Procurar3;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -1069,6 +1100,7 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -1086,6 +1118,8 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

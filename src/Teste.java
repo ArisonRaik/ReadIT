@@ -11,6 +11,7 @@
 import java.sql.*;
 import java.io.*;
 import java.io.File;
+import java.sql.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 public class Teste extends javax.swing.JFrame {
@@ -99,11 +100,14 @@ public class Teste extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
             "databaseName=ReadIT;user=arison;password=123;";
+        
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection(connectionUrl);
             String test = jTextField1.getText();
-            //File imgfile = Procurar1.get();
+            
+            Statement stmt = con.createStatement();
+            
             FileInputStream imagem = new FileInputStream(new File(jTextField10.getText()));
             String query = "INSERT INTO teste2(teste34,imagem)VALUES(?,?)";
             PreparedStatement prp = con.prepareStatement(query);
@@ -112,8 +116,13 @@ public class Teste extends javax.swing.JFrame {
             prp.setBinaryStream(2, imagem);
             prp.executeUpdate();
             //int row = preparedStatement.executeUpdate();
-            
-            JOptionPane.showMessageDialog(null,"feito!");
+            String command = "SELECT * FROM teste2 WHERE teste34 = 'inserir3'";
+            ResultSet rs = stmt.executeQuery(command);
+            String value = null;
+             if (rs.next())
+                value = rs.getString("teste34");
+             String values = value + " teste mudou!";
+            JOptionPane.showMessageDialog(null,values);
         }
         catch(ClassNotFoundException | SQLException e){
             e.printStackTrace();

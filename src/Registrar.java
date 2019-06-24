@@ -2,7 +2,9 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /*
@@ -201,16 +203,34 @@ public class Registrar extends javax.swing.JFrame {
             String query = "INSERT INTO registro(email, nome, pais, login, genero, senha)VALUES(?,?,?,?,?,?)";
             PreparedStatement prp = con.prepareStatement(query);
             //Connection conect = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ReadIT","arison","123");
-            prp.setString(1, email);
-            prp.setString(2, nome);
-            prp.setString(3, pais);
-            prp.setString(4, login);
-            prp.setString(5, genero);
-            prp.setString(6, senha);
-            prp.executeUpdate();
-            //int row = preparedStatement.executeUpdate();
             
-            JOptionPane.showMessageDialog(null,"feito!");
+            String duplicado = "SELECT login FROM registro WHERE login = '" + login + "'";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(duplicado);
+            
+            int count = 0;
+            while(rs.next()){
+                count = count+1;
+            }
+            if(count == 0){
+                prp.setString(1, email);
+                prp.setString(2, nome);
+                prp.setString(3, pais);
+                prp.setString(4, login);
+                prp.setString(5, genero);
+                prp.setString(6, senha);
+                prp.executeUpdate();
+                //int row = preparedStatement.executeUpdate();
+
+                JOptionPane.showMessageDialog(null,"feito!");
+                
+                Inventory a= new Inventory();
+                a.setVisible(true);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Um usuario já está usando esse login. Tente outro login.");
+            }
         }
         catch(ClassNotFoundException | SQLException e){
             e.printStackTrace();
@@ -221,7 +241,7 @@ public class Registrar extends javax.swing.JFrame {
 
         Inventory a= new Inventory();
             a.setVisible(true);
-            a.setDefaultCloseOperation(Inventory.DISPOSE_ON_CLOSE);
+            this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

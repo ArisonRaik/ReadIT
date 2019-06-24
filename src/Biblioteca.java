@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.*;
 import javax.swing.filechooser.*;
+import net.proteanit.sql.DbUtils;
+//import org.apache.commons.dbutils.DbUtils;
 /**
  *
  * @author Arison Raik
@@ -24,6 +26,21 @@ public class Biblioteca extends javax.swing.JFrame {
      */
     public Biblioteca() {
         initComponents();
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                Connection con = DriverManager.getConnection(connectionUrl);
+                Statement stmt = con.createStatement();
+                
+                String SQL = "SELECT ID, Titulo, Autor, Genero, Ano, Pgns FROM texto";
+
+		PreparedStatement ps = con.prepareStatement(SQL);
+                
+                ResultSet rs = ps.executeQuery();
+                
+                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -81,6 +98,7 @@ public class Biblioteca extends javax.swing.JFrame {
         Procurar4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        ButtonAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -788,16 +806,31 @@ public class Biblioteca extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(5).setPreferredWidth(10);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 590, 265));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 600, 265));
+
+        ButtonAtualizar.setBackground(new java.awt.Color(51, 153, 255));
+        ButtonAtualizar.setFont(new java.awt.Font("Vani", 1, 24)); // NOI18N
+        ButtonAtualizar.setForeground(new java.awt.Color(0, 51, 255));
+        ButtonAtualizar.setText("ATUALIZAR");
+        ButtonAtualizar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), new java.awt.Color(51, 153, 255), null));
+        ButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAtualizarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ButtonAtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, 43));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public String parametro;
-    private void AlterarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarLivroActionPerformed
-        String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
+    public String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
             "databaseName=ReadIT;user=arison;password=123;";
+    
+    
+    
+    private void AlterarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarLivroActionPerformed
         
-        try {
+     try {
             if ((jTextField7.getText().equals("")) || (jTextField8.getText().equals("")) || (jTextField9.getText().equals("")) || (jTextField11.getText().equals("")) || jComboBox2.getSelectedItem().equals("--")) {
                 JOptionPane.showMessageDialog(null, "Um ou mais campos estão vazios.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
             }
@@ -924,13 +957,13 @@ public class Biblioteca extends javax.swing.JFrame {
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
+        jTextField10.setText("");
+        jTextField12.setText("");
+        jComboBox1.setSelectedItem("--");
     }//GEN-LAST:event_LimparActionPerformed
 
     private void InserirLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InserirLivroActionPerformed
         // Add Button
-        String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
-            "databaseName=ReadIT;user=arison;password=123;";
-        
         try {
             if (jTextField3.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Insira o título.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
@@ -954,6 +987,14 @@ public class Biblioteca extends javax.swing.JFrame {
             FileInputStream artigo = new FileInputStream(new File(jTextField12.getText()));
             String salvaGenero = jComboBox1.getSelectedItem().toString();
             
+            
+            String duplicado = "SELECT Titulo FROM texto WHERE Titulo = '" + salvaTitulo + "'";
+            ResultSet rs = stmt.executeQuery(duplicado);
+            int count = 0;
+            while(rs.next()){
+                count = count+1;
+            }
+            if(count == 0){
             /*Statement procuraDuplicado = con.createStatement();
               ResultSet resultado = procuraDuplicado.executeQuery("" +
                   "SELECT * FROM texto WHERE Titulo = " + salvaTitulo + "");
@@ -977,6 +1018,10 @@ public class Biblioteca extends javax.swing.JFrame {
             /*}else{
                 JOptionPane.showMessageDialog(null, "Já existe um material no seu estoque usando esse título.", "Warning!", JOptionPane.WARNING_MESSAGE);
             }*/
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"O título já está sendo utilizado em outro artigo da sua biblioteca. Por favor, insira outro título.");
+            }
             }
 
             jTextField3.setText("");
@@ -1052,21 +1097,20 @@ public class Biblioteca extends javax.swing.JFrame {
 
     private void Procurar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Procurar3ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-      fileChooser.setDialogTitle("Escolher imagem");
-      fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-      FileNameExtensionFilter Filtro = new FileNameExtensionFilter("Documento", "pdf", "doc", "docx", "txt");
-      fileChooser.setFileFilter(Filtro);
-      int retorno = fileChooser.showSaveDialog(this);
-      
-      if(retorno == JFileChooser.APPROVE_OPTION){
-          File file = fileChooser.getSelectedFile();
-          jTextField12.setText(file.getPath());
-      }
+        fileChooser.setDialogTitle("Escolher imagem");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        FileNameExtensionFilter Filtro = new FileNameExtensionFilter("Documento", "pdf", "doc", "docx", "txt");
+        fileChooser.setFileFilter(Filtro);
+        int retorno = fileChooser.showSaveDialog(this);
+
+        if(retorno == JFileChooser.APPROVE_OPTION){
+            File file = fileChooser.getSelectedFile();
+            jTextField12.setText(file.getPath());
+        }
     }//GEN-LAST:event_Procurar3ActionPerformed
 
     private void Procurar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Procurar4ActionPerformed
-        String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
-            "databaseName=ReadIT;user=arison;password=123;";
+        
         try {
             if (jTextField6.getText().equals(""))
                 JOptionPane.showMessageDialog(null, "Digite um valor.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
@@ -1102,7 +1146,6 @@ public class Biblioteca extends javax.swing.JFrame {
                         Procurar2.setEnabled(true);
                     }
                     parametro = "ID = " + id;
-                    JOptionPane.showMessageDialog(null,"Apagado!");
                     
                     
                 }else{
@@ -1134,8 +1177,6 @@ public class Biblioteca extends javax.swing.JFrame {
                 }/*else{
                     JOptionPane.showMessageDialog(null, "Já existe um material no seu estoque usando esse título.", "Warning!", JOptionPane.WARNING_MESSAGE);
                      }*/
-            
-                jTextField1.setText("");
 
             }
           catch(ClassNotFoundException | SQLException e){
@@ -1147,6 +1188,27 @@ public class Biblioteca extends javax.swing.JFrame {
     
     
     }//GEN-LAST:event_Procurar4ActionPerformed
+
+    private void ButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAtualizarActionPerformed
+        // Display Button
+
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                Connection con = DriverManager.getConnection(connectionUrl);
+                Statement stmt = con.createStatement();
+                
+                String SQL = "SELECT ID, Titulo, Autor, Genero, Ano, Pgns FROM texto";
+
+		PreparedStatement ps = con.prepareStatement(SQL);
+                
+                ResultSet rs = ps.executeQuery();
+                
+                jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_ButtonAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1185,6 +1247,7 @@ public class Biblioteca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AlterarLivro;
+    private javax.swing.JButton ButtonAtualizar;
     private javax.swing.JButton DeletarLivro;
     private javax.swing.JButton InserirLivro;
     private javax.swing.JButton Limpar;

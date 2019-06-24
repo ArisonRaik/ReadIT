@@ -15,6 +15,11 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.*;
 public class Inventory extends javax.swing.JFrame {
 
@@ -151,17 +156,33 @@ public class Inventory extends javax.swing.JFrame {
         this.dispose();
     }  
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
-        String login = jTextFieldLogin.getText();
-        String senha = jTextFieldSenha.getText();
-        if(login.equals("Arison") && senha.equals("123")){
-            Menu a= new Menu();
-            a.setVisible(true);
-            this.dispose();}
-        else
-        {
-                JOptionPane.showMessageDialog(null, "Erro em login ou senha.", "Ooops Wait...!", JOptionPane.ERROR_MESSAGE);
-        }
-        
+        String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
+            "databaseName=ReadIT;user=arison;password=123;";
+        try {
+            
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection con = DriverManager.getConnection(connectionUrl);
+            Statement stmt = con.createStatement();
+            
+            String login = jTextFieldLogin.getText();
+            String senha = jTextFieldSenha.getText();
+            String sql = "SELECT login, senha FROM registro WHERE login = '" + login + "' AND senha = '" + senha + "'";
+            ResultSet rs = stmt.executeQuery(sql);
+            int count = 0;
+            while(rs.next()){
+                count = count+1;
+            }
+            if(count == 1){
+                Menu a= new Menu();
+                a.setVisible(true);
+                this.dispose();}
+            else
+            {
+                    JOptionPane.showMessageDialog(null, "Login ouy senha invalido.", "ERRO!", JOptionPane.ERROR_MESSAGE);
+            }
+            } catch(ClassNotFoundException | SQLException e){
+            e.printStackTrace();
+            }
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

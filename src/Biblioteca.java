@@ -78,6 +78,7 @@ public class Biblioteca extends javax.swing.JFrame {
         jButton20 = new javax.swing.JButton();
         jTextField11 = new javax.swing.JTextField();
         Procurar2 = new javax.swing.JButton();
+        Procurar4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -542,6 +543,7 @@ public class Biblioteca extends javax.swing.JFrame {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Drama", "Biografia", "Comédia", "Romance", "Clássico", "Épico ou Fantasia", "Auto-ajuda", "Terror", "Ficção-Científica", "Educacional", "Outros" }));
+        jComboBox2.setEnabled(false);
 
         jButton19.setText("Novo Gênero");
 
@@ -562,9 +564,17 @@ public class Biblioteca extends javax.swing.JFrame {
         });
 
         Procurar2.setText("Procurar");
+        Procurar2.setEnabled(false);
         Procurar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Procurar2ActionPerformed(evt);
+            }
+        });
+
+        Procurar4.setText("Procurar");
+        Procurar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Procurar4ActionPerformed(evt);
             }
         });
 
@@ -607,7 +617,9 @@ public class Biblioteca extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Procurar2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Procurar2)
+                    .addComponent(Procurar4))
                 .addGap(63, 63, 63))
         );
         jPanel5Layout.setVerticalGroup(
@@ -617,7 +629,8 @@ public class Biblioteca extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Procurar4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -641,7 +654,7 @@ public class Biblioteca extends javax.swing.JFrame {
                     .addComponent(Procurar2))
                 .addGap(24, 24, 24)
                 .addComponent(AlterarLivro, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Atualizar", jPanel5);
@@ -779,59 +792,56 @@ public class Biblioteca extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public String parametro;
     private void AlterarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarLivroActionPerformed
         String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
             "databaseName=ReadIT;user=arison;password=123;";
+        
         try {
-            if (jTextField1.getText().equals(""))
-                JOptionPane.showMessageDialog(null, "Digite um valor.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
-            else {
-              
-                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                Connection con = DriverManager.getConnection(connectionUrl);
-                Statement stmt = con.createStatement();
-                String tipo = jComboBox3.getSelectedItem().toString();
-                
-                ResultSet result = stmt.executeQuery("" +
-                  "SELECT COUNT(*) FROM texto");
-                    result.next();                
-                int rows = result.getInt(1);
-                
-                String salvaTitulo = jTextField7.getText();
-                String salvaAutor = jTextField8.getText();
-                int salvaAno = Integer.parseInt(jTextField9.getText());
-                FileInputStream imagem = new FileInputStream(new File(jTextField11.getText()));
-                String salvaGenero = jComboBox2.getSelectedItem().toString();
-                
-                Statement procuraDuplicado = con.createStatement();
-                ResultSet resultado = procuraDuplicado.executeQuery("" +
-                  "SELECT * FROM texto WHERE Titulo = " + salvaTitulo + "");
-                resultado.next();
-                
-                
-              int row = result.getInt(1);
-                if(row == 0){
-                    if(tipo == "ID"){
-
-                        int id = Integer.parseInt(jTextField6.getText());
-                        String query = "DELETE FROM texto WHERE ID =" +id + "";
-                        //Atualizar os textfields da pagina com as informações do livro
-                        //criar um botão "Procurar" ao lado do ID/Titulo
-                        
-                    }else{
-                        String titulo = jTextField6.getText();
-                        String query = "DELETE FROM texto WHERE Titulo =" +titulo + "";
-                        
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Já existe um material no seu estoque usando esse título.", "Warning!", JOptionPane.WARNING_MESSAGE);
-                     }
-            
-                jTextField1.setText("");
-
+            if ((jTextField7.getText().equals("")) || (jTextField8.getText().equals("")) || (jTextField9.getText().equals("")) || (jTextField11.getText().equals("")) || jComboBox2.getSelectedItem().equals("--")) {
+                JOptionPane.showMessageDialog(null, "Um ou mais campos estão vazios.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
             }
-        }  catch(ClassNotFoundException | SQLException e){
+            else {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection con = DriverManager.getConnection(connectionUrl);
+            
+ 
+            String salvaTitulo = jTextField7.getText();
+            String salvaAutor = jTextField8.getText();
+            int salvaAno = Integer.parseInt(jTextField9.getText());
+            FileInputStream imagem = new FileInputStream(new File(jTextField11.getText()));
+            String salvaGenero = jComboBox2.getSelectedItem().toString();
+            
+            /*Statement procuraDuplicado = con.createStatement();
+              ResultSet resultado = procuraDuplicado.executeQuery("" +
+                  "SELECT * FROM texto WHERE Titulo = " + salvaTitulo + "");
+              resultado.next();            
+              int row = result.getInt(1);*/
+            //if(row == 0){
+                String query = "UPDATE texto SET Titulo = ?,Autor = ?,Ano = ?,Genero = ?,Capa = ? WHERE " + parametro;
+                PreparedStatement prp = con.prepareStatement(query);
+                prp.setString(1, salvaTitulo);
+                prp.setString(2, salvaAutor);
+                prp.setInt(3, salvaAno);
+                prp.setString(4, salvaGenero);
+                prp.setBinaryStream(5, imagem);
+                prp.executeUpdate();
+                //int row = preparedStatement.executeUpdate();
+
+                JOptionPane.showMessageDialog(null,"feito!");
+            /*}else{
+                JOptionPane.showMessageDialog(null, "Já existe um material no seu estoque usando esse título.", "Warning!", JOptionPane.WARNING_MESSAGE);
+            }*/
+            }
+
+            jTextField7.setText("");
+            jTextField8.setText("");
+            jTextField9.setText("");
+            jComboBox2.setSelectedItem("--");
+            jTextField11.setText("");
+            parametro = null;
+
+        } catch(ClassNotFoundException | SQLException e){
             e.printStackTrace();
         } catch (FileNotFoundException e) {  
             e.printStackTrace();
@@ -906,9 +916,6 @@ public class Biblioteca extends javax.swing.JFrame {
             e.printStackTrace();
         } 
         
-        /*UPDATE teste3
-   SET ID = ID-1
-WHERE ID>8/* update dos ids*/
     }//GEN-LAST:event_DeletarLivroActionPerformed
 
     private void LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparActionPerformed
@@ -1025,7 +1032,18 @@ WHERE ID>8/* update dos ids*/
     }//GEN-LAST:event_jTextField11ActionPerformed
 
     private void Procurar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Procurar2ActionPerformed
-        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Escolher imagem");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        FileNameExtensionFilter Filtro = new FileNameExtensionFilter("Imagem", "jpg", "jpeg", "png");
+        fileChooser.setFileFilter(Filtro);
+        int retorno = fileChooser.showSaveDialog(this);
+
+        if(retorno == JFileChooser.APPROVE_OPTION){
+            File file = fileChooser.getSelectedFile();
+            jTextField11.setText(file.getPath());
+        }
+      
     }//GEN-LAST:event_Procurar2ActionPerformed
 
     private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
@@ -1045,6 +1063,90 @@ WHERE ID>8/* update dos ids*/
           jTextField12.setText(file.getPath());
       }
     }//GEN-LAST:event_Procurar3ActionPerformed
+
+    private void Procurar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Procurar4ActionPerformed
+        String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
+            "databaseName=ReadIT;user=arison;password=123;";
+        try {
+            if (jTextField6.getText().equals(""))
+                JOptionPane.showMessageDialog(null, "Digite um valor.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
+            else {
+                
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                Connection con = DriverManager.getConnection(connectionUrl);
+                Statement stmt = con.createStatement();
+                String tipo = jComboBox5.getSelectedItem().toString();
+                
+
+                if(tipo == "ID"){
+                    int id = Integer.parseInt(jTextField6.getText());
+                    String query = "SELECT * FROM texto WHERE ID =" +id + "";
+                    
+                    //PreparedStatement prp = con.prepareStatement(query);
+                    ResultSet rs = stmt.executeQuery(query);
+                    
+                    if(rs.next()) { 
+                        String Nome = rs.getString("Titulo");
+                        jTextField7.setText(Nome);
+                        String Autor = rs.getString("Autor");
+                        jTextField8.setText(Autor);
+                        String Ano = rs.getString("Ano");
+                        jTextField9.setText(Ano);
+                        String Genero = rs.getString("Genero");
+                        jComboBox2.setSelectedItem(Genero);
+
+                        jTextField7.setEditable(true);
+                        jTextField8.setEditable(true);
+                        jTextField9.setEditable(true);
+                        jComboBox2.setEnabled(true);
+                        Procurar2.setEnabled(true);
+                    }
+                    parametro = "ID = " + id;
+                    JOptionPane.showMessageDialog(null,"Apagado!");
+                    
+                    
+                }else{
+                    String titulo = jTextField6.getText();
+                    
+                    String query = "SELECT * FROM texto WHERE Titulo = '" + titulo + "'";
+                    ResultSet rs = stmt.executeQuery(query);
+                    
+                    if(rs.next()) { 
+                        String Nome = rs.getString("Titulo");
+                        jTextField7.setText(Nome);
+                        String Autor = rs.getString("Autor");
+                        jTextField8.setText(Autor);
+                        String Ano = rs.getString("Ano");
+                        jTextField9.setText(Ano);
+                        String Genero = rs.getString("Genero");
+                        jComboBox2.setSelectedItem(Genero);
+                        jTextField7.setEditable(true);
+                        jTextField8.setEditable(true);
+                        jTextField9.setEditable(true);
+                        jComboBox2.setEnabled(true);
+                        Procurar2.setEnabled(true);
+                    }
+                    parametro = "Titulo = " + titulo;
+                    JOptionPane.showMessageDialog(null,"Apagado!");
+                    
+                    
+                }
+                }/*else{
+                    JOptionPane.showMessageDialog(null, "Já existe um material no seu estoque usando esse título.", "Warning!", JOptionPane.WARNING_MESSAGE);
+                     }*/
+            
+                jTextField1.setText("");
+
+            }
+          catch(ClassNotFoundException | SQLException e){
+            e.printStackTrace();
+          
+        } /*catch (FileNotFoundException e) {  
+            e.printStackTrace();
+        }*/
+    
+    
+    }//GEN-LAST:event_Procurar4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1089,6 +1191,7 @@ WHERE ID>8/* update dos ids*/
     private javax.swing.JButton Procurar1;
     private javax.swing.JButton Procurar2;
     private javax.swing.JButton Procurar3;
+    private javax.swing.JButton Procurar4;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton19;

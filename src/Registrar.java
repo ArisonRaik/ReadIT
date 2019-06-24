@@ -50,8 +50,8 @@ public class Registrar extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        deletar = new javax.swing.JTextField();
         jTextFieldNome = new javax.swing.JTextField();
+        jComboBoxGenero = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,11 +151,11 @@ public class Registrar extends javax.swing.JFrame {
         jLabel10.setMaximumSize(new java.awt.Dimension(821, 59));
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 120, 20));
 
-        deletar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
-        jPanel1.add(deletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 230, -1));
-
         jTextFieldNome.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
         jPanel1.add(jTextFieldNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 230, -1));
+
+        jComboBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Outros/Não definido" }));
+        jPanel1.add(jComboBoxGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 230, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,11 +182,11 @@ public class Registrar extends javax.swing.JFrame {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection(connectionUrl);
             String email = jTextFieldEmail.getText();
-            String nome = deletar.getText();
+            String nome = jTextFieldNome.getText();
             String pais = jTextFieldPais.getText();
             String login = jTextFieldLogin.getText();
             String senha = jTextFieldSenha1.getText();
-            String genero = deletar.getText();
+            String genero = jComboBoxGenero.getSelectedItem().toString();
             
             /*String genero; if(jRadioButton2.isChecked()){
                 "Masculino";
@@ -261,9 +261,9 @@ public class Registrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextField deletar;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonEntrar;
+    private javax.swing.JComboBox<String> jComboBoxGenero;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -14,6 +14,10 @@ import java.io.File;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
+import org.apache.poi.xwpf.converter.pdf.PdfConverter;
+import org.apache.poi.xwpf.converter.pdf.PdfOptions;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+
 public class Teste extends javax.swing.JFrame {
 
     /**

@@ -140,14 +140,15 @@ public class Inventory extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Registrar a= new Registrar();
         a.setVisible(true);
-        a.setDefaultCloseOperation(Registrar.DISPOSE_ON_CLOSE);           
+        this.dispose();
+        //a.setDefaultCloseOperation(Registrar.DISPOSE_ON_CLOSE);           
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
        Teste a = new Teste();
         a.setVisible(true);
-        a.setDefaultCloseOperation(Search.DISPOSE_ON_CLOSE);
+        this.dispose();
     }  
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         String login = jTextFieldLogin.getText();
@@ -155,7 +156,7 @@ public class Inventory extends javax.swing.JFrame {
         if(login.equals("Arison") && senha.equals("123")){
             Menu a= new Menu();
             a.setVisible(true);
-            a.setDefaultCloseOperation(Menu.DISPOSE_ON_CLOSE);}
+            this.dispose();}
         else
         {
                 JOptionPane.showMessageDialog(null, "Erro em login ou senha.", "Ooops Wait...!", JOptionPane.ERROR_MESSAGE);

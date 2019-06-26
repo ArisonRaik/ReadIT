@@ -29,7 +29,6 @@ public class Inventory extends javax.swing.JFrame {
     public Inventory() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -163,7 +162,6 @@ public class Inventory extends javax.swing.JFrame {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection(connectionUrl);
             Statement stmt = con.createStatement();
-            
             String login = jTextFieldLogin.getText();
             String senha = jTextFieldSenha.getText();
             String sql = "SELECT login, senha FROM registro WHERE login = '" + login + "' AND senha = '" + senha + "'";
@@ -175,7 +173,9 @@ public class Inventory extends javax.swing.JFrame {
             if(count == 1){
                 Menu a= new Menu();
                 a.setVisible(true);
-                this.dispose();}
+                Biblioteca.RetornoLogin = login;
+                this.dispose();
+            }
             else
             {
                     JOptionPane.showMessageDialog(null, "Login ouy senha invalido.", "ERRO!", JOptionPane.ERROR_MESSAGE);
@@ -192,13 +192,13 @@ public class Inventory extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Tenha um bom dia!");
         System.exit(0);
     }//GEN-LAST:event_jButton5ActionPerformed
-/*
+    }/*
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 */
       
-    }   
+       
     
     /*
      * @param args the command line arguments

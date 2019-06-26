@@ -26,12 +26,13 @@ public class Biblioteca extends javax.swing.JFrame {
      */
     public Biblioteca() {
         initComponents();
+        
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                 Connection con = DriverManager.getConnection(connectionUrl);
                 Statement stmt = con.createStatement();
                 
-                String SQL = "SELECT ID, Titulo, Autor, Genero, Ano, Pgns FROM texto";
+                String SQL = "SELECT ID, Titulo, Autor, Genero, Ano, Pgns FROM texto WHERE Login = '" + RetornoLogin +"'";
 
 		PreparedStatement ps = con.prepareStatement(SQL);
                 
@@ -825,8 +826,8 @@ public class Biblioteca extends javax.swing.JFrame {
     public String parametro;
     public String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
             "databaseName=ReadIT;user=arison;password=123;";
-    
-    
+    //Inventory a = new Inventory();
+        public static String RetornoLogin;// = a.GetRetornoLogin();
     
     private void AlterarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarLivroActionPerformed
         
@@ -851,7 +852,7 @@ public class Biblioteca extends javax.swing.JFrame {
               resultado.next();            
               int row = result.getInt(1);*/
             //if(row == 0){
-                String query = "UPDATE texto SET Titulo = ?,Autor = ?,Ano = ?,Genero = ?,Capa = ? WHERE " + parametro;
+                String query = "UPDATE texto SET Titulo = ?,Autor = ?,Ano = ?,Genero = ?,Capa = ? WHERE " + parametro + "AND Login = '" + RetornoLogin + "'";
                 PreparedStatement prp = con.prepareStatement(query);
                 prp.setString(1, salvaTitulo);
                 prp.setString(2, salvaAutor);
@@ -913,28 +914,28 @@ public class Biblioteca extends javax.swing.JFrame {
 
                 if(tipo == "ID"){
                     int id = Integer.parseInt(jTextField1.getText());
-                    String query = "DELETE FROM texto WHERE ID =" +id + "";
+                    String query = "DELETE FROM texto WHERE ID =" +id + "AND Login = '" + RetornoLogin + "'";
                     PreparedStatement prp = con.prepareStatement(query);
                     prp.executeUpdate();
                     JOptionPane.showMessageDialog(null,"Apagado!");
                     
-                    String command = "UPDATE texto SET ID = ID - 1 WHERE ID > " + id + "";
+                    String command = "UPDATE texto SET ID = ID - 1 WHERE ID > " + id + "" + "AND Login = '" + RetornoLogin + "'";
                     PreparedStatement prps = con.prepareStatement(command);
                     prps.executeUpdate();
                 }else{
                     String titulo = jTextField1.getText();
                     
-                    String command = "SELECT * FROM texto WHERE Titulo = '" + titulo + "'";
+                    String command = "SELECT * FROM texto WHERE Titulo = '" + titulo + "'" + "AND Login = '" + RetornoLogin + "'";
                     ResultSet rs = stmt.executeQuery(command);
                     int id = 0;
                      if (rs.next())
                         id = rs.getInt("ID");
-                    String command2 = "UPDATE texto SET ID = ID - 1 WHERE ID > " + id + "";
+                    String command2 = "UPDATE texto SET ID = ID - 1 WHERE ID > " + id + "" + "AND Login = '" + RetornoLogin + "'";
                     PreparedStatement prps = con.prepareStatement(command2);
                     prps.executeUpdate();
                     
                     
-                    String query = "DELETE FROM texto WHERE Titulo = '" + titulo + "'";
+                    String query = "DELETE FROM texto WHERE Titulo = '" + titulo + "'" + "AND Login = '" + RetornoLogin + "'";
                     PreparedStatement prp = con.prepareStatement(query);
                     prp.executeUpdate();
                     JOptionPane.showMessageDialog(null,"Apagado!");
@@ -953,7 +954,6 @@ public class Biblioteca extends javax.swing.JFrame {
 
     private void LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimparActionPerformed
         //Clear Button(Add/Delete)
-
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
@@ -988,6 +988,7 @@ public class Biblioteca extends javax.swing.JFrame {
             String salvaGenero = jComboBox1.getSelectedItem().toString();
             
             
+            
             String duplicado = "SELECT Titulo FROM texto WHERE Titulo = '" + salvaTitulo + "'";
             ResultSet rs = stmt.executeQuery(duplicado);
             int count = 0;
@@ -1001,7 +1002,7 @@ public class Biblioteca extends javax.swing.JFrame {
               resultado.next();            
               int row = result.getInt(1);*/
             //if(row == 0){
-                String query = "INSERT INTO texto(ID,Titulo,Autor,Ano,Genero,Capa, Artigo)VALUES(?,?,?,?,?,?, ?)";
+                String query = "INSERT INTO texto(ID,Titulo,Autor,Ano,Genero,Capa, Artigo, Login)VALUES(?,?,?,?,?,?,?,?)";
                 PreparedStatement prp = con.prepareStatement(query);
                 //Connection conect = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ReadIT","arison","123");
                 prp.setInt(1, rows + 1);
@@ -1011,6 +1012,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 prp.setString(5, salvaGenero);
                 prp.setBinaryStream(6, imagem);
                 prp.setBinaryStream(7, artigo);
+                prp.setString(8, RetornoLogin);
                 prp.executeUpdate();
                 //int row = preparedStatement.executeUpdate();
 
@@ -1124,7 +1126,7 @@ public class Biblioteca extends javax.swing.JFrame {
 
                 if(tipo == "ID"){
                     int id = Integer.parseInt(jTextField6.getText());
-                    String query = "SELECT * FROM texto WHERE ID =" +id + "";
+                    String query = "SELECT * FROM texto WHERE ID =" +id + "AND Login = '" + RetornoLogin + "'" ;
                     
                     //PreparedStatement prp = con.prepareStatement(query);
                     ResultSet rs = stmt.executeQuery(query);
@@ -1151,7 +1153,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 }else{
                     String titulo = jTextField6.getText();
                     
-                    String query = "SELECT * FROM texto WHERE Titulo = '" + titulo + "'";
+                    String query = "SELECT * FROM texto WHERE Titulo = '" + titulo + "'" + "AND Login = '" + RetornoLogin + "'";
                     ResultSet rs = stmt.executeQuery(query);
                     
                     if(rs.next()) { 
@@ -1169,8 +1171,7 @@ public class Biblioteca extends javax.swing.JFrame {
                         jComboBox2.setEnabled(true);
                         Procurar2.setEnabled(true);
                     }
-                    parametro = "Titulo = " + titulo;
-                    JOptionPane.showMessageDialog(null,"Apagado!");
+                    parametro = "Titulo = '" + titulo + "'";
                     
                     
                 }

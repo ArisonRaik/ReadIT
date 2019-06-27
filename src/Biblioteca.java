@@ -14,6 +14,12 @@ import java.sql.Statement;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import net.proteanit.sql.DbUtils;
+
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.*;
+import com.itextpdf.*;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
 //import org.apache.commons.dbutils.DbUtils;
 /**
  *
@@ -976,7 +982,7 @@ public class Biblioteca extends javax.swing.JFrame {
             
             Statement stmt = con.createStatement();
               ResultSet result = stmt.executeQuery("" +
-                  "SELECT COUNT(*) FROM texto");
+                  "SELECT COUNT(*) FROM texto WHERE Login = '" + RetornoLogin + "'");
                     result.next();                
               int rows = result.getInt(1);
             
@@ -987,9 +993,12 @@ public class Biblioteca extends javax.swing.JFrame {
             FileInputStream artigo = new FileInputStream(new File(jTextField12.getText()));
             String salvaGenero = jComboBox1.getSelectedItem().toString();
             
+            PdfDocument pdfDoc = new PdfDocument(new PdfReader(artigo));
+            int paginas = pdfDoc.getNumberOfPages();
             
             
-            String duplicado = "SELECT Titulo FROM texto WHERE Titulo = '" + salvaTitulo + "'";
+            
+            String duplicado = "SELECT Titulo FROM texto WHERE Titulo = '" + salvaTitulo + "'" + "AND Login = '" + RetornoLogin + "'";
             ResultSet rs = stmt.executeQuery(duplicado);
             int count = 0;
             while(rs.next()){
@@ -1002,7 +1011,7 @@ public class Biblioteca extends javax.swing.JFrame {
               resultado.next();            
               int row = result.getInt(1);*/
             //if(row == 0){
-                String query = "INSERT INTO texto(ID,Titulo,Autor,Ano,Genero,Capa, Artigo, Login)VALUES(?,?,?,?,?,?,?,?)";
+                String query = "INSERT INTO texto(ID,Titulo,Autor,Ano,Genero,Capa, Artigo, Login, Pgns)VALUES(?,?,?,?,?,?,?,?,?)";
                 PreparedStatement prp = con.prepareStatement(query);
                 //Connection conect = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=ReadIT","arison","123");
                 prp.setInt(1, rows + 1);
@@ -1013,6 +1022,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 prp.setBinaryStream(6, imagem);
                 prp.setBinaryStream(7, artigo);
                 prp.setString(8, RetornoLogin);
+                prp.setInt(9, paginas);
                 prp.executeUpdate();
                 //int row = preparedStatement.executeUpdate();
 
@@ -1033,7 +1043,10 @@ public class Biblioteca extends javax.swing.JFrame {
 
         } catch(ClassNotFoundException | SQLException e){
             e.printStackTrace();
-        } catch (FileNotFoundException e) {  
+        } catch (FileNotFoundException e ) {  
+            e.printStackTrace();
+        }
+        catch (IOException e ) {  
             e.printStackTrace();
         }
         ////IF se não for numero. testar depois.
@@ -1198,7 +1211,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 Connection con = DriverManager.getConnection(connectionUrl);
                 Statement stmt = con.createStatement();
                 
-                String SQL = "SELECT ID, Titulo, Autor, Genero, Ano, Pgns FROM texto";
+                String SQL = "SELECT ID, Titulo, Autor, Genero, Ano, Pgns FROM texto WHERE Login = '" + RetornoLogin + "'";
 
 		PreparedStatement ps = con.prepareStatement(SQL);
                 

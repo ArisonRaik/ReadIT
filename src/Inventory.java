@@ -8,6 +8,11 @@
  *
  * @author acer
  */
+import com.itextpdf.kernel.pdf.PdfReader;
+import com.itextpdf.kernel.pdf.*;
+import com.itextpdf.*;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -149,10 +154,18 @@ public class Inventory extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       Teste a = new Teste();
-        a.setVisible(true);
-        this.dispose();
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt){                                         
+       //Teste a = new Teste();
+        //a.setVisible(true);
+        //this.dispose();
+        try{
+        PdfReader reader = new PdfReader("file:///C:/Users/Arison%20Raik/Documents/wendell.pdf");
+
+        PdfDocument pdfDoc = new PdfDocument(new PdfReader("file:///C:/Users/Arison%20Raik/Downloads/Resultado_LAB.%20DNA%20CENTER_9277059747708.pdf"));
+        int test = pdfDoc.getNumberOfPages();
+        JOptionPane.showMessageDialog(null, test);
+        }
+        catch(IOException a){}
     }  
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  

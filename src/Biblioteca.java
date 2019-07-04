@@ -20,6 +20,16 @@ import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.*;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
+
+import java.io.File;
+import java.net.ConnectException;
+import org.apache.commons.io.FilenameUtils;
+
+import com.artofsolving.jodconverter.DocumentConverter;
+import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;
+import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;
+import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConverter;
+
 //import org.apache.commons.dbutils.DbUtils;
 /**
  *

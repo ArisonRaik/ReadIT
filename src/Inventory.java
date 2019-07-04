@@ -26,6 +26,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.*;
+import java.io.File;
+import java.net.ConnectException;
+import org.apache.commons.io.FilenameUtils;
+
+import com.sun.star.lang.XEventListener;
+import org.slf4j.*;
+
+import com.artofsolving.jodconverter.*;
+import com.artofsolving.jodconverter.DocumentConverter;
+import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;
+import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;
+import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConverter;
+
 public class Inventory extends javax.swing.JFrame {
 
     /**
@@ -158,15 +171,38 @@ public class Inventory extends javax.swing.JFrame {
        //Teste a = new Teste();
         //a.setVisible(true);
         //this.dispose();
-        try{
+        
+        
+        /*try{
         PdfReader reader = new PdfReader("file:///C:/Users/Arison%20Raik/Documents/wendell.pdf");
 
         PdfDocument pdfDoc = new PdfDocument(new PdfReader("file:///C:/Users/Arison%20Raik/Downloads/Resultado_LAB.%20DNA%20CENTER_9277059747708.pdf"));
         int test = pdfDoc.getNumberOfPages();
         JOptionPane.showMessageDialog(null, test);
         }
+        catch(IOException a){}*/
+        OpenOfficeConnection connection = null;
+    try {
+      File inputFile = new File("‪C:\\Users\\Arison Raik\\Documents\\Parte.docx");
+      File outputFile = new File("‪C:\\Users\\Arison Raik\\Documents\\Parte.pdf");
+
+      // connect to an OpenOffice.org instance running on port 8100
+      // run in shell: soffice -headless -accept="socket,host=127.0.0.1,port=8100;urp;" -nofirststartwizard
+      // See: http://www.artofsolving.com/
+      connection = new SocketOpenOfficeConnection(8100);
+      connection.connect();
+
+      // convert
+      DocumentConverter converter = new OpenOfficeDocumentConverter(connection);
+      converter.convert(inputFile, outputFile);
+        
+        JOptionPane.showMessageDialog(null,"Feito!");
+// close the connection
+        connection.disconnect();
+        }
         catch(IOException a){}
-    }  
+    }
+
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
             "databaseName=ReadIT;user=arison;password=123;";

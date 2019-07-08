@@ -18,6 +18,11 @@ import org.apache.poi.xwpf.converter.pdf.PdfConverter;
 import org.apache.poi.xwpf.converter.pdf.PdfOptions;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
+
+import com.aspose.words.Document;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Teste extends javax.swing.JFrame {
 
     /**
@@ -40,6 +45,8 @@ public class Teste extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         Procurar1 = new javax.swing.JButton();
         jTextField10 = new javax.swing.JTextField();
+        Procurar2 = new javax.swing.JButton();
+        jTextField11 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +72,21 @@ public class Teste extends javax.swing.JFrame {
             }
         });
 
+        Procurar2.setText("Procurar");
+        Procurar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Procurar2ActionPerformed(evt);
+            }
+        });
+
+        jTextField11.setEditable(false);
+        jTextField11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
+        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField11ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,9 +101,13 @@ public class Teste extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(154, 154, 154))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Procurar1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Procurar2)
+                            .addComponent(Procurar1))
                         .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
@@ -95,7 +121,11 @@ public class Teste extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Procurar1)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Procurar2)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -104,7 +134,7 @@ public class Teste extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
             "databaseName=ReadIT;user=arison;password=123;";
-        
+        /*
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection(connectionUrl);
@@ -132,7 +162,17 @@ public class Teste extends javax.swing.JFrame {
             e.printStackTrace();
         } catch (FileNotFoundException e) {  
             e.printStackTrace();
-}
+}*/
+        
+            Document doc;
+        try {
+            doc = new Document(jTextField11.getText());
+            doc.save("‪‪C:\\Users\\Arison Raik\\Documents\\Parte.pdf");
+        } catch (Exception ex) {
+            Logger.getLogger(Teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void Procurar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Procurar1ActionPerformed
@@ -147,6 +187,8 @@ public class Teste extends javax.swing.JFrame {
         if(retorno == JFileChooser.APPROVE_OPTION){
             File file = fileChooser.getSelectedFile();
             jTextField10.setText(file.getPath());
+            
+            
         }
 
     }//GEN-LAST:event_Procurar1ActionPerformed
@@ -154,6 +196,24 @@ public class Teste extends javax.swing.JFrame {
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
+
+    private void Procurar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Procurar2ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Escolher imagem");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        FileNameExtensionFilter Filtro = new FileNameExtensionFilter("Documento", "pdf", "doc", "docx");
+        fileChooser.setFileFilter(Filtro);
+        int retorno = fileChooser.showSaveDialog(this);//mudado de showOpenDialog
+
+        if(retorno == JFileChooser.APPROVE_OPTION){
+            File file = fileChooser.getSelectedFile();
+            jTextField11.setText(file.getPath());
+        }
+    }//GEN-LAST:event_Procurar2ActionPerformed
+
+    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,8 +252,10 @@ public class Teste extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Procurar1;
+    private javax.swing.JButton Procurar2;
     private javax.swing.JButton jButton1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
     // End of variables declaration//GEN-END:variables
 }

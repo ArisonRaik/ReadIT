@@ -25,11 +25,15 @@ import java.io.File;
 import java.net.ConnectException;
 import org.apache.commons.io.FilenameUtils;
 
+//não sendo utilizados
 import com.artofsolving.jodconverter.DocumentConverter;
 import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConverter;
+/////////////////////////
 
+import com.aspose.words.*;
+import com.aspose.words.Document;
 //import org.apache.commons.dbutils.DbUtils;
 /**
  *
@@ -979,7 +983,7 @@ public class Biblioteca extends javax.swing.JFrame {
     }//GEN-LAST:event_LimparActionPerformed
 
     private void InserirLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InserirLivroActionPerformed
-        // Add Button
+        
         try {
             if (jTextField3.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Insira o título.", "Oops Wait...!", JOptionPane.ERROR_MESSAGE);
@@ -990,12 +994,17 @@ public class Biblioteca extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection(connectionUrl);
             
             
+            
+            
+            //fazendo a contagem do número de documentos inseridos
             Statement stmt = con.createStatement();
               ResultSet result = stmt.executeQuery("" +
                   "SELECT COUNT(*) FROM texto WHERE Login = '" + RetornoLogin + "'");
                     result.next();                
               int rows = result.getInt(1);
             
+             
+              
             String salvaTitulo = jTextField3.getText();
             String salvaAutor = jTextField4.getText();
             int salvaAno = Integer.parseInt(jTextField5.getText());
@@ -1003,11 +1012,22 @@ public class Biblioteca extends javax.swing.JFrame {
             FileInputStream artigo = new FileInputStream(new File(jTextField12.getText()));
             String salvaGenero = jComboBox1.getSelectedItem().toString();
             
-            PdfDocument pdfDoc = new PdfDocument(new PdfReader(artigo));
+           
+            //convertendo o arquivo para PDF caso não seja e dando título
+            InputStream artigoConvertido;
+            if(jTextField12.getText().contains(".docx")){
+                Document docConverter = new Document(artigo);
+                docConverter.save(".\\PDFs\\" + salvaTitulo + ".pdf");
+                artigoConvertido = new FileInputStream(".\\PDFs\\" + salvaTitulo + ".pdf");
+            }else{
+                artigoConvertido = artigo;
+            }
+            
+            //contando a quantidade de páginas
+            PdfDocument pdfDoc = new PdfDocument(new PdfReader(artigoConvertido));
             int paginas = pdfDoc.getNumberOfPages();
             
-            
-            
+            //bloqueando se já estiver usando o título,fazendo a contagem para o IF abaixo
             String duplicado = "SELECT Titulo FROM texto WHERE Titulo = '" + salvaTitulo + "'" + "AND Login = '" + RetornoLogin + "'";
             ResultSet rs = stmt.executeQuery(duplicado);
             int count = 0;
@@ -1030,13 +1050,14 @@ public class Biblioteca extends javax.swing.JFrame {
                 prp.setInt(4, salvaAno);
                 prp.setString(5, salvaGenero);
                 prp.setBinaryStream(6, imagem);
-                prp.setBinaryStream(7, artigo);
+                prp.setBinaryStream(7, artigoConvertido);
                 prp.setString(8, RetornoLogin);
                 prp.setInt(9, paginas);
                 prp.executeUpdate();
                 //int row = preparedStatement.executeUpdate();
 
                 JOptionPane.showMessageDialog(null,"feito!");
+                
             /*}else{
                 JOptionPane.showMessageDialog(null, "Já existe um material no seu estoque usando esse título.", "Warning!", JOptionPane.WARNING_MESSAGE);
             }*/
@@ -1050,6 +1071,8 @@ public class Biblioteca extends javax.swing.JFrame {
             jTextField4.setText("");
             jTextField5.setText("");
             jComboBox1.setSelectedItem("--");
+            
+            
 
         } catch(ClassNotFoundException | SQLException e){
             e.printStackTrace();
@@ -1058,6 +1081,17 @@ public class Biblioteca extends javax.swing.JFrame {
         }
         catch (IOException e ) {  
             e.printStackTrace();
+        }
+        catch (Exception a){}
+        finally{
+            //apagando os arquivos mas mantendo o último por segurança
+            File file = new File(".\\PDFs");
+            File[] files = file.listFiles(); 
+            for (File f:files) 
+                {if (f.isFile()) 
+                    { f.delete();
+                    }
+                }
         }
         ////IF se não for numero. testar depois.
         /*catch(NumberFormatException e) {
@@ -1124,7 +1158,7 @@ public class Biblioteca extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Escolher imagem");
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        FileNameExtensionFilter Filtro = new FileNameExtensionFilter("Documento", "pdf", "doc", "docx", "txt");
+        FileNameExtensionFilter Filtro = new FileNameExtensionFilter("Documento", "pdf", "docx");
         fileChooser.setFileFilter(Filtro);
         int retorno = fileChooser.showSaveDialog(this);
 

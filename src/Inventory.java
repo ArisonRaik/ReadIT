@@ -38,6 +38,14 @@ import com.artofsolving.jodconverter.DocumentConverter;
 import com.artofsolving.jodconverter.openoffice.connection.OpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.connection.SocketOpenOfficeConnection;
 import com.artofsolving.jodconverter.openoffice.converter.OpenOfficeDocumentConverter;
+import org.artofsolving.jodconverter.OfficeDocumentConverter;
+import org.artofsolving.jodconverter.office.DefaultOfficeManagerConfiguration;
+import org.artofsolving.jodconverter.office.OfficeManager;
+
+import com.aspose.words.*;
+import com.aspose.words.Document;
+import java.util.logging.Level;
+
 
 public class Inventory extends javax.swing.JFrame {
 
@@ -167,10 +175,11 @@ public class Inventory extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt){                                         
-       //Teste a = new Teste();
-        //a.setVisible(true);
-        //this.dispose();
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt){   
+         
+       /*Teste a = new Teste();
+        a.setVisible(true);
+        this.dispose();*/
         
         
         /*try{
@@ -181,6 +190,30 @@ public class Inventory extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, test);
         }
         catch(IOException a){}*/
+        
+        
+        try {
+            InputStream stream = new FileInputStream("C:\\Users\\Arison Raik\\Documents\\Parte.docx");
+            Document doc = new Document(stream);
+            stream.close();
+            doc.save("teste.pdf");
+            JOptionPane.showMessageDialog(null,"Feito!");
+            //jTextFieldLogin.setText("teste.pdf");
+            //doc.save("‪‪C:\\Users\\Arison Raik\\Documents\\testeteste.docx");
+            //JOptionPane.showMessageDialog(null,"Feito!");
+        }
+        catch (Exception ex) {
+            java.util.logging.Logger.getLogger(Inventory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            File f = new File("teste.pdf");
+            if(f != null){
+                f.delete();
+                f = null;
+            }
+        }
+        
+        /*
         OpenOfficeConnection connection = null;
     try {
       File inputFile = new File("‪C:\\Users\\Arison Raik\\Documents\\Parte.docx");
@@ -189,7 +222,7 @@ public class Inventory extends javax.swing.JFrame {
       // connect to an OpenOffice.org instance running on port 8100
       // run in shell: soffice -headless -accept="socket,host=127.0.0.1,port=8100;urp;" -nofirststartwizard
       // See: http://www.artofsolving.com/
-      connection = new SocketOpenOfficeConnection(8100);
+      connection = new SocketOpenOfficeConnection("192.168.0.1", 8100);
       connection.connect();
 
       // convert
@@ -200,7 +233,7 @@ public class Inventory extends javax.swing.JFrame {
 // close the connection
         connection.disconnect();
         }
-        catch(IOException a){}
+        catch(IOException a){}*/
     }
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed

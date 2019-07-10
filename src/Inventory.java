@@ -256,6 +256,7 @@ public class Inventory extends javax.swing.JFrame {
                 Menu a= new Menu();
                 a.setVisible(true);
                 Biblioteca.RetornoLogin = login;
+                Ler.RetornoLogin = login;
                 this.dispose();
             }
             else

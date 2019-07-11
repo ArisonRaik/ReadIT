@@ -1,13 +1,19 @@
 
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 
@@ -112,13 +118,33 @@ public class Ler extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int i = jTable1.getSelectedRow();
-        int r = (int)jTable1.getValueAt(i,0);
-        //O r pega o ID, consertar abaixo para fazer um select a partir do ID,retirar de vez a coluna escondida
-        ImageIcon image1 = (ImageIcon)jTable1.getValueAt(i,5);
-        Image image2 = image1.getImage().getScaledInstance(jLabel1.getWidth(),jLabel1.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon image3 = new ImageIcon(image2);
-        jLabel1.setIcon(image3);
+        try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection con = DriverManager.getConnection(connectionUrl);
+            
+            int i = jTable1.getSelectedRow();
+            int r = (int)jTable1.getValueAt(i,0);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from texto WHERE login = '" + RetornoLogin +"' AND ID =" + r);
+                if(rs.next()){
+                    byte[] img = rs.getBytes("Capa");
+
+
+
+                    //Resize The ImageIcon
+                    ImageIcon image = new ImageIcon(img);
+                    Image im = image.getImage();
+                    Image myImg = im.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),Image.SCALE_SMOOTH);
+                    ImageIcon newImage = new ImageIcon(myImg);
+                    jLabel1.setIcon(newImage);
+                }
+                
+                else{
+                    JOptionPane.showMessageDialog(null, "No Data");
+                }
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
     }//GEN-LAST:event_jTable1MouseClicked
 
    

@@ -1,4 +1,14 @@
 
+import com.aspose.words.Document;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import org.icepdf.ri.common.ComponentKeyBinding;
 import org.icepdf.ri.common.SwingController;
@@ -11,9 +21,24 @@ public class LeituraDocumento extends javax.swing.JFrame {
      * Creates new form LeituraDocumento
      */
     public static byte[] documento;
-    public LeituraDocumento() {
+    public LeituraDocumento(){
         initComponents();
-        openpdf("documento");//consertar
+        //FileOutputStream output = new FileOutputStream(new File("/Users/MacbookPro/Downloads/pic.png"));
+        //Document doc = new Document();
+        
+        OutputStream targetFile;
+        try {
+            targetFile = new FileOutputStream(
+                    ".\\PDFs\\newtest.pdf");
+            targetFile.write(documento);
+            targetFile.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LeituraDocumento.class.getName()).log(Level.SEVERE, null, ex);
+        }   catch (IOException e ) {  
+            e.printStackTrace();
+        }
+                
+        openpdf(".\\PDFs\\newtest.pdf");//consertar
         setExtendedState(MAXIMIZED_BOTH);
     }
     

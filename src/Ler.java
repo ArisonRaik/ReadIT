@@ -2,7 +2,11 @@
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -141,19 +145,31 @@ public class Ler extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery("select * from texto WHERE login = '" + RetornoLogin +"' AND ID =" + r);
                 if(rs.next()){
                     byte[] img = rs.getBytes("Capa");
-                    LeituraDocumento.documento = rs.getBytes("Artigo");
-
-
+                    byte[] documento = rs.getBytes("Artigo");
                     //Resize The ImageIcon
                     ImageIcon image = new ImageIcon(img);
                     Image im = image.getImage();
                     Image myImg = im.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),Image.SCALE_SMOOTH);
                     ImageIcon newImage = new ImageIcon(myImg);
                     jLabel1.setIcon(newImage);
+                    
+                    
+                    //realizar como teste,está baixando os pdfs mas vazios
+                    OutputStream targetFile = new FileOutputStream(
+                    ".\\PDFs\\newtest.pdf");
+                    targetFile.write(documento);
+                    targetFile.close();
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "No Data");
                 }
+             ResultSet rz = st.executeQuery("select * from texto WHERE login = '" + RetornoLogin +"' AND ID =" + r);
+                /*if(rz.next()){
+                     Blob blob = rs.getBlob("Artigo");
+                     InputStream is = blob.getBinaryStream();
+                     byte[] allBytesInBlob = blob.getBytes(1, (int) blob.length());
+                     //int b = is.read();
+                }*/
             }catch(Exception ex){
                 ex.printStackTrace();
             }

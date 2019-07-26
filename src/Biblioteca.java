@@ -24,6 +24,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import java.io.File;
 import java.net.ConnectException;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 
 //não sendo utilizados
 import com.artofsolving.jodconverter.DocumentConverter;
@@ -1014,18 +1015,27 @@ public class Biblioteca extends javax.swing.JFrame {
             
            
             //convertendo o arquivo para PDF caso não seja e dando título
-            InputStream artigoConvertido;
+            FileInputStream artigoConvertido;
             if(jTextField12.getText().contains(".docx")){
                 Document docConverter = new Document(artigo);
                 docConverter.save(".\\PDFs\\" + salvaTitulo + ".pdf");
                 artigoConvertido = new FileInputStream(".\\PDFs\\" + salvaTitulo + ".pdf");
             }else{
-                artigoConvertido = artigo;
+                byte[] documento = IOUtils.toByteArray(artigo);
+                OutputStream targetFile = new FileOutputStream(
+                    ".\\PDFs\\" + salvaTitulo + ".pdf");
+                targetFile.write(documento);
+                targetFile.close();
+                artigoConvertido = new FileInputStream(".\\PDFs\\" + salvaTitulo + ".pdf");
             }
             
-            //contando a quantidade de páginas
+            
+            //Contando as páginas
             PdfDocument pdfDoc = new PdfDocument(new PdfReader(artigoConvertido));
             int paginas = pdfDoc.getNumberOfPages();
+ 
+            //Criar um novo inputstream para funcionar depois de se utilizar o pdfDocument
+            FileInputStream artigo2 = new FileInputStream(".\\PDFs\\" + salvaTitulo + ".pdf");
             
             //bloqueando se já estiver usando o título,fazendo a contagem para o IF abaixo
             String duplicado = "SELECT Titulo FROM texto WHERE Titulo = '" + salvaTitulo + "'" + "AND Login = '" + RetornoLogin + "'";
@@ -1050,10 +1060,19 @@ public class Biblioteca extends javax.swing.JFrame {
                 prp.setInt(4, salvaAno);
                 prp.setString(5, salvaGenero);
                 prp.setBinaryStream(6, imagem);
-                prp.setBinaryStream(7, artigoConvertido);
+                prp.setBinaryStream(7, artigo2);
                 prp.setString(8, RetornoLogin);
                 prp.setInt(9, paginas);
                 prp.executeUpdate();
+                
+                /*//contando a quantidade de páginas
+                PdfDocument pdfDoc = new PdfDocument(new PdfReader(artigoConvertido));
+                int paginas = pdfDoc.getNumberOfPages();
+                
+                String query2 = "INSERT INTO texto(Pgns)VALUES(" + paginas + ")WHERE Titulo = '" + salvaTitulo + "'" + "AND Login = '" + RetornoLogin + "'";
+                PreparedStatement prp2 = con.prepareStatement(query2);
+                //prp2.setInt(1, paginas);
+                prp2.executeUpdate();*/
                 //int row = preparedStatement.executeUpdate();
 
                 JOptionPane.showMessageDialog(null,"feito!");

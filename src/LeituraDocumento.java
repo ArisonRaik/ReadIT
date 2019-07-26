@@ -26,17 +26,7 @@ public class LeituraDocumento extends javax.swing.JFrame {
         //FileOutputStream output = new FileOutputStream(new File("/Users/MacbookPro/Downloads/pic.png"));
         //Document doc = new Document();
         
-        OutputStream targetFile;
-        try {
-            targetFile = new FileOutputStream(
-                    ".\\PDFs\\newtest.pdf");
-            targetFile.write(documento);
-            targetFile.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(LeituraDocumento.class.getName()).log(Level.SEVERE, null, ex);
-        }   catch (IOException e ) {  
-            e.printStackTrace();
-        }
+        
                 
         openpdf(".\\PDFs\\newtest.pdf");//consertar
         setExtendedState(MAXIMIZED_BOTH);

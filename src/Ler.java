@@ -155,6 +155,7 @@ public class Ler extends javax.swing.JFrame {
                     
                     
                     //realizar como teste,está baixando os pdfs mas vazios
+                    //investigar também se o problema não é a inserção
                     OutputStream targetFile = new FileOutputStream(
                     ".\\PDFs\\newtest.pdf");
                     targetFile.write(documento);

@@ -71,14 +71,15 @@ public class Inventory extends javax.swing.JFrame {
         jTextFieldLogin = new javax.swing.JTextField();
         jTextFieldSenha = new javax.swing.JTextField();
         jButtonEntrar = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Project_Inventory");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(584, 425));
+        setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -90,60 +91,56 @@ public class Inventory extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 120, 46));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Senha");
         jLabel2.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 120, 46));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 120, 46));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("Login");
         jLabel4.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 120, 46));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 120, 46));
 
+        jTextFieldLogin.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldLogin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldLogin.setForeground(new java.awt.Color(255, 255, 255));
         jTextFieldLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 190, 30));
+        jPanel1.add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 370, 30));
 
+        jTextFieldSenha.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldSenha.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldSenha.setForeground(new java.awt.Color(255, 255, 255));
         jTextFieldSenha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(jTextFieldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 160, 30));
+        jPanel1.add(jTextFieldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 370, 30));
 
-        jButtonEntrar.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonEntrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jButtonEntrar.setBackground(new java.awt.Color(51, 102, 255));
+        jButtonEntrar.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jButtonEntrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonEntrar.setText("ENTRAR");
-        jButtonEntrar.setBorder(null);
+        jButtonEntrar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 180, 30));
+        jPanel1.add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 370, 30));
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jButton5.setText("SAIR");
-        jButton5.setBorder(null);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 102, 255));
+        jLabel1.setText("Não possui login? Cadastre-se!");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 170, 30));
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jButton1.setText("REGISTRAR");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 170, 31));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Arison Raik\\Pictures\\readit background1.png")); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 360));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,13 +161,6 @@ public class Inventory extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Registrar a= new Registrar();
-        a.setVisible(true);
-        this.dispose();
-        //a.setDefaultCloseOperation(Registrar.DISPOSE_ON_CLOSE);           
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt){   
@@ -265,15 +255,13 @@ public class Inventory extends javax.swing.JFrame {
             e.printStackTrace();
             }
     }//GEN-LAST:event_jButtonEntrarActionPerformed
+    
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        Registrar a= new Registrar();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
- 
-       int exit=JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?");
-       if(exit==0){
-            JOptionPane.showMessageDialog(null, "Tenha um bom dia!");
-        System.exit(0);
-    }//GEN-LAST:event_jButton5ActionPerformed
-    }/**/
       
        
     
@@ -319,9 +307,8 @@ public class Inventory extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonEntrar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

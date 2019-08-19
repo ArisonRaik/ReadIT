@@ -54,22 +54,24 @@ public class Registrar extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextFieldNome = new javax.swing.JTextField();
         jComboBoxGenero = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButtonEntrar.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonEntrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButtonEntrar.setText("ENTRAR");
-        jButtonEntrar.setBorder(null);
+        jButtonEntrar.setBackground(new java.awt.Color(204, 204, 204));
+        jButtonEntrar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jButtonEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEntrar.setText("ENVIAR");
+        jButtonEntrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 230, 20));
+        jPanel1.add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 230, 30));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
@@ -80,97 +82,118 @@ public class Registrar extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 316, 32));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 210, 10));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 51, 51));
         jLabel2.setText("Repita a senha");
         jLabel2.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 190, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 190, 20));
 
-        jTextFieldSenha2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
-        jPanel1.add(jTextFieldSenha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 230, -1));
+        jTextFieldSenha2.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldSenha2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldSenha2.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldSenha2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(jTextFieldSenha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 230, 30));
 
-        jTextFieldPais.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
-        jPanel1.add(jTextFieldPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 230, -1));
+        jTextFieldPais.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldPais.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldPais.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldPais.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(jTextFieldPais, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 230, 30));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 51, 51));
         jLabel3.setText("Registrar");
         jLabel3.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 120, 46));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 120, 46));
 
-        jTextFieldLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
-        jPanel1.add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 230, -1));
+        jTextFieldLogin.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldLogin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldLogin.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 230, 30));
 
-        jTextFieldSenha1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
-        jPanel1.add(jTextFieldSenha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 230, -1));
+        jTextFieldSenha1.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldSenha1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldSenha1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldSenha1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(jTextFieldSenha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 230, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 51, 51));
         jLabel5.setText("Login");
         jLabel5.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 120, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 120, 20));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 51, 51));
         jLabel6.setText("Senha");
         jLabel6.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 120, 20));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 120, 20));
 
-        jTextFieldEmail.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
-        jPanel1.add(jTextFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 230, -1));
+        jTextFieldEmail.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldEmail.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldEmail.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(jTextFieldEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 38, 230, 30));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 51, 51));
         jLabel7.setText("Email");
         jLabel7.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 120, 20));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 120, 20));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 51, 51));
         jLabel8.setText("País");
         jLabel8.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 160, 20));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 160, 20));
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
         jLabel9.setText("Nome");
         jLabel9.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 120, 20));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 120, 20));
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Yu Gothic Medium", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 51, 51));
         jLabel10.setText("Gênero");
         jLabel10.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 120, 20));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 120, 20));
 
-        jTextFieldNome.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(204, 204, 204)));
-        jPanel1.add(jTextFieldNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 230, -1));
+        jTextFieldNome.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldNome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextFieldNome.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldNome.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.add(jTextFieldNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 230, 30));
 
         jComboBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Outros/Não definido" }));
-        jPanel1.add(jComboBoxGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 230, -1));
+        jPanel1.add(jComboBoxGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 230, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Arison Raik\\Pictures\\readit background2.png")); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -284,6 +307,7 @@ public class Registrar extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonEntrar;
     private javax.swing.JComboBox<String> jComboBoxGenero;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

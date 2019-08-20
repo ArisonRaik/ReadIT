@@ -1,4 +1,5 @@
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,13 +18,49 @@ import javax.swing.JOptionPane;
  *
  * @author Arison Raik
  */
-public class Registrar extends javax.swing.JFrame {
+public class Perfil extends javax.swing.JFrame {
 
     /**
      * Creates new form Registrar
      */
-    public Registrar() {
+    public static String RetornoLogin;
+    public Perfil() {
         initComponents();
+        
+        
+        try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                Connection con = DriverManager.getConnection(connectionUrl);
+                Statement stmt = con.createStatement();
+                
+
+                    String query = "SELECT * FROM texto WHERE Login = '" + RetornoLogin + "'" ;
+                    
+                    //PreparedStatement prp = con.prepareStatement(query);
+                    ResultSet rs = stmt.executeQuery(query);
+                    
+                    if(rs.next()) { 
+                        String Nome = rs.getString("Nome");
+                        jTextFieldNome.setText(Nome);
+                        String Email = rs.getString("Email");
+                        jTextFieldEmail.setText(Email);
+                        String Login = rs.getString("Login");
+                        jTextFieldLogin.setText(Login);
+                        String Genero = rs.getString("Genero");
+                        jComboBoxGenero.setSelectedItem(Genero);
+                        String Pais = rs.getString("Pais");
+                        jTextFieldPais.setText(Pais);
+                        String Senha = rs.getString("Senha");
+                        jTextFieldSenha1.setText(Senha);
+
+                        jTextField7.setEditable(true);
+                        jTextField8.setEditable(true);
+                        jTextField9.setEditable(true);
+                        jComboBox2.setEnabled(true);
+                        Procurar2.setEnabled(true);
+                    } 
+        }catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
     }
 
     /**
@@ -39,8 +76,6 @@ public class Registrar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButtonEntrar = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTextFieldSenha2 = new javax.swing.JTextField();
         jTextFieldPais = new javax.swing.JTextField();
         jTextFieldLogin = new javax.swing.JTextField();
         jTextFieldSenha1 = new javax.swing.JTextField();
@@ -63,14 +98,14 @@ public class Registrar extends javax.swing.JFrame {
         jButtonEntrar.setBackground(new java.awt.Color(204, 204, 204));
         jButtonEntrar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jButtonEntrar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonEntrar.setText("ENVIAR");
+        jButtonEntrar.setText("EDITAR");
         jButtonEntrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButtonEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 230, 30));
+        jPanel1.add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 230, 30));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Verdana", 1, 8)); // NOI18N
@@ -82,20 +117,7 @@ public class Registrar extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 210, 10));
-
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel2.setText("Repita a senha");
-        jLabel2.setMaximumSize(new java.awt.Dimension(821, 59));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 190, 20));
-
-        jTextFieldSenha2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextFieldSenha2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTextFieldSenha2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldSenha2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.add(jTextFieldSenha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 230, 30));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 210, 10));
 
         jTextFieldPais.setBackground(new java.awt.Color(204, 204, 204));
         jTextFieldPais.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -193,6 +215,12 @@ public class Registrar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+                
+        
+    
+    
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         String connectionUrl = "jdbc:sqlserver://localhost:1433;" +  
             "databaseName=ReadIT;user=arison;password=123;";
@@ -302,7 +330,6 @@ public class Registrar extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxGenero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -314,6 +341,5 @@ public class Registrar extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldPais;
     private javax.swing.JTextField jTextFieldSenha1;
-    private javax.swing.JTextField jTextFieldSenha2;
     // End of variables declaration//GEN-END:variables
 }
